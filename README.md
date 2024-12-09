@@ -1,3 +1,10 @@
 # Syutos animation mode
 
-## -made by syuto
+
+commands are
+- /animation help
+- /animation mode [mode]
+- /animation modes
+
+
+### -made by syuto
