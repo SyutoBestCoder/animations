@@ -1,4 +1,4 @@
-# Syutos animation mode
+# Syuto's animation mode
 
 
 commands are
