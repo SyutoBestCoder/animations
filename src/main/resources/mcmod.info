@@ -1,13 +1,13 @@
 [
 {
-  "modid": "examplemod",
-  "name": "ExampleMod",
-  "description": "Nice mod",
+  "modid": "animations",
+  "name": "Animations",
+  "description": "Animaitons",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["manuthebyte", "ExampleModDev"],
+  "authorList": ["Syuto"],
   "credits": "",
   "logoFile": "",
   "screenshots": [],

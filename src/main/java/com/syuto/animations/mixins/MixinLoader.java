@@ -1,4 +1,4 @@
-package com.example.examplemod.mixins;
+package com.syuto.animations.mixins;
 
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 import org.spongepowered.asm.launch.MixinBootstrap;
@@ -11,7 +11,7 @@ public class MixinLoader implements IFMLLoadingPlugin {
     public MixinLoader() {
         System.out.println("[ExampleMod] Injecting with IFMLLoadingPlugin.");
         MixinBootstrap.init();
-        Mixins.addConfiguration("mixins.examplemod.json"); //TODO: Add your own mixin config file here
+        Mixins.addConfiguration("mixins.animations.json"); //TODO: Add your own mixin config file here
         MixinEnvironment.getDefaultEnvironment().setSide(MixinEnvironment.Side.CLIENT);
     }
 
