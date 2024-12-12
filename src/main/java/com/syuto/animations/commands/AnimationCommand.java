@@ -1,17 +1,19 @@
 package com.syuto.animations.commands;
 
 import com.syuto.animations.Animations;
+import com.syuto.animations.config.api.AnimationMode;
 import com.syuto.animations.utils.ClientUtils;
+import net.minecraft.client.Minecraft;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.stream.Stream;
 
 public class AnimationCommand extends CommandBase {
 
-    private static final List<String> VALID_MODES = Arrays.asList("exhibition", "sigma", "plain", "vanilla");
+    Minecraft mc = Minecraft.getMinecraft();
+
 
     @Override
     public String getCommandName() {
@@ -27,38 +29,49 @@ public class AnimationCommand extends CommandBase {
     public void processCommand(ICommandSender sender, String[] args) throws CommandException {
         if (args.length == 0) {
             ClientUtils.sendMessage("&cInvalid usage. Use /animation help.");
-        } else if (args.length == 1) {
-            switch (args[0].toLowerCase()) {
-                case "help":
-                    ClientUtils.sendLine();
-                    ClientUtils.sendMessage("&3Animation Command Help:");
-                    ClientUtils.sendMessage("&3/animation mode [mode] - Sets the animation mode.");
-                    ClientUtils.sendMessage("&3/animation modes - Shows the animation modes.");
-                    ClientUtils.sendMessage("&3/animation help - Shows this help message.");
-                    ClientUtils.sendLine();
-                    break;
+            return;
+        }
 
-                case "modes":
-                    ClientUtils.sendLine();
-                    ClientUtils.sendMessage("&3Animation Modes:");
-                    VALID_MODES.forEach(mode -> ClientUtils.sendMessage("&3- " + mode));
-                    ClientUtils.sendLine();
-                    break;
+        switch (args[0].toLowerCase()) {
+            case "help":
+                sendHelpMessage();
+                break;
 
-                default:
-                    ClientUtils.sendMessage("&cInvalid usage. Use /animation help.");
-                    break;
-            }
-        } else if (args.length == 2 && args[0].equalsIgnoreCase("mode")) {
-            String mode = args[1];
-            if (VALID_MODES.contains(mode)) {
-                Animations.setAnimationMode(mode.toLowerCase());
-                ClientUtils.sendMessage("&aAnimation mode set to: " + mode);
-            } else {
-                ClientUtils.sendMessage("&cInvalid mode. Use /animation modes to view valid modes.");
-            }
-        } else {
-            ClientUtils.sendMessage("&cInvalid usage. Use /animation help.");
+            case "modes":
+                sendAvailableModes();
+                break;
+            default:
+                setAnimationMode(args[0]);
+                break;
+        }
+    }
+
+    private void sendHelpMessage() {
+        ClientUtils.sendLine();
+        ClientUtils.sendMessage("&eAnimation Command Help:");
+        ClientUtils.sendMessage("&7/animation [mode] - Sets the animation mode.");
+        ClientUtils.sendMessage("&7/animation modes - Shows the animation modes.");
+        ClientUtils.sendMessage("&7/animation help - Shows this help message.");
+        ClientUtils.sendLine();
+    }
+
+    private void sendAvailableModes() {
+        ClientUtils.sendLine();
+        ClientUtils.sendMessage("&eAvailable Animation Modes:");
+        Stream.of(AnimationMode.values())
+                .map(Enum::name)
+                .map(String::toLowerCase)
+                .forEach(mode -> ClientUtils.sendMessage("&3- " + mode));
+        ClientUtils.sendLine();
+    }
+
+    private void setAnimationMode(String modeName) {
+        try {
+            AnimationMode mode = AnimationMode.valueOf(modeName.toUpperCase());
+            Animations.setAnimationMode(mode);
+            ClientUtils.sendMessage("&aAnimation mode set to: " + mode.name().toLowerCase());
+        } catch (IllegalArgumentException e) {
+            ClientUtils.sendMessage("&cInvalid mode. Use /animation modes to view valid modes.");
         }
     }
 

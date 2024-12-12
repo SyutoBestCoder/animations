@@ -2,6 +2,7 @@ package com.syuto.animations;
 
 import com.google.gson.*;
 import com.syuto.animations.commands.AnimationCommand;
+import com.syuto.animations.config.api.AnimationMode;
 import com.syuto.animations.config.Config;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.ClientCommandHandler;
@@ -20,7 +21,7 @@ import java.io.IOException;
 @Mod(modid = Animations.MODID, version = Animations.VERSION)
 public class Animations {
     public static final String MODID = "animations";
-    public static final String VERSION = "1.0";
+    public static final String VERSION = "1.1";
 
 
     public static final Logger LOG = LogManager.getLogger("Byte");
@@ -47,7 +48,7 @@ public class Animations {
             }
 
             JsonObject jo = new JsonObject();
-            jo.addProperty("mode", Config.mode != null ? Config.mode.toLowerCase() : "vanilla");
+            jo.addProperty("mode", Config.mode.name());
 
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String jsonData = gson.toJson(jo);
@@ -62,6 +63,7 @@ public class Animations {
         }
     }
 
+
     public static void loadConfig() {
         if (!configFile.exists()) {
             saveConfig();
@@ -72,9 +74,9 @@ public class Animations {
             JsonParser jsonParser = new JsonParser();
             config = jsonParser.parse(reader).getAsJsonObject();
             if (config.has("mode")) {
-                Config.mode = config.get("mode").getAsString();
+                Config.mode = AnimationMode.fromJsonValue(config.get("mode").getAsString());
             } else {
-                Config.mode = "vanilla";
+                Config.mode = AnimationMode.VANILLA;
             }
             LOG.info("Configuration loaded successfully.");
         } catch (JsonSyntaxException | IOException e) {
@@ -82,7 +84,7 @@ public class Animations {
         }
     }
 
-    public static void setAnimationMode(String mode) {
+    public static void setAnimationMode(AnimationMode mode) {
         Config.mode = mode;
         saveConfig();
     }
