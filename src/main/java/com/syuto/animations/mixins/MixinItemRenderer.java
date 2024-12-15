@@ -60,8 +60,8 @@ public abstract class MixinItemRenderer {
                 break;
             case SIGMA:
                 this.transformFirstPersonItem(f * 0.5f, 0);
-                GlStateManager.rotate(-sine * 55 / 2.0F, -8.0F, -0.0F, 9.0F);
-                GlStateManager.rotate(-sine * 45, 1.0F, sine / 2, -0.0F);
+                GL11.glRotated(-sine * 55 / 2.0F, -8.0F, -0.0F, 9.0F);
+                GL11.glRotated(-sine * 45, 1.0F, sine / 2, -0.0F);
                 GL11.glTranslated(-0.1, 0.3, 0.1);
                 break;
             case VANILLA:
@@ -73,9 +73,23 @@ public abstract class MixinItemRenderer {
                 this.transformFirstPersonItem(f, 0.0F);
                 break;
             case SPIN:
-                GlStateManager.rotate(this.spin, 0f, 0f, -0.1f);
+                GL11.glRotated(this.spin, 0f, 0f, -0.1f);
                 this.transformFirstPersonItem(f, 0f);
                 this.spin = -(System.currentTimeMillis() / 2 % 360);
         }
+    }
+
+
+
+    @Inject(
+            method = "renderItemInFirstPerson",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/client/renderer/ItemRenderer;renderItem(Lnet/minecraft/entity/EntityLivingBase;Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/renderer/block/model/ItemCameraTransforms$TransformType;)V",
+                    shift = At.Shift.BEFORE
+            )
+    )
+    public void itemScale(float p_renderItemInFirstPerson_1_, CallbackInfo ci) {
+        GL11.glScaled((double) Config.scale / 100, (double) Config.scale / 100, (double) Config.scale / 100);
     }
 }

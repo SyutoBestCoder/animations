@@ -21,7 +21,7 @@ import java.io.IOException;
 @Mod(modid = Animations.MODID, version = Animations.VERSION)
 public class Animations {
     public static final String MODID = "animations";
-    public static final String VERSION = "1.1";
+    public static final String VERSION = "1.2";
 
 
     public static final Logger LOG = LogManager.getLogger("Byte");
@@ -49,6 +49,7 @@ public class Animations {
 
             JsonObject jo = new JsonObject();
             jo.addProperty("mode", Config.mode.name());
+            jo.addProperty("scale", Config.scale);
 
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String jsonData = gson.toJson(jo);
@@ -73,11 +74,11 @@ public class Animations {
         try (FileReader reader = new FileReader(configFile)) {
             JsonParser jsonParser = new JsonParser();
             config = jsonParser.parse(reader).getAsJsonObject();
-            if (config.has("mode")) {
+            if (config.has("mode") && config.has("scale")) {
                 Config.mode = AnimationMode.fromJsonValue(config.get("mode").getAsString());
-            } else {
-                Config.mode = AnimationMode.VANILLA;
+                Config.scale = config.get("scale").getAsInt();
             }
+
             LOG.info("Configuration loaded successfully.");
         } catch (JsonSyntaxException | IOException e) {
             LOG.error("Unable to load configuration: {}", e.getMessage());
@@ -86,6 +87,12 @@ public class Animations {
 
     public static void setAnimationMode(AnimationMode mode) {
         Config.mode = mode;
+        saveConfig();
+    }
+
+
+    public static void setAnimationScale(int scale) {
+        Config.scale = scale;
         saveConfig();
     }
 }
