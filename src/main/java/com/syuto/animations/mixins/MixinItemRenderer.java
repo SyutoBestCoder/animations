@@ -21,6 +21,8 @@ public abstract class MixinItemRenderer {
 
     @Shadow protected abstract void transformFirstPersonItem(float p_transformFirstPersonItem_1_, float p_transformFirstPersonItem_2_);
 
+    @Shadow protected abstract void doBlockTransformations();
+
     @Redirect(
             method = "renderItemInFirstPerson",
             at = @At(
@@ -76,13 +78,14 @@ public abstract class MixinItemRenderer {
                 GL11.glRotated(this.spin, 0f, 0f, -0.1f);
                 this.transformFirstPersonItem(f, 0f);
                 this.spin = -(System.currentTimeMillis() / 2 % 360);
-         //   case STAB:
+                break;
+            case STAB:
                 GlStateManager.translate(0.6f, 0.3f, -0.6f + -spin * 0.7);
                 GlStateManager.rotate(6090, 0.0f, 0.0f, 0.1f);
                 GlStateManager.rotate(6085, 0.0f, 0.1f, 0.0f);
                 GlStateManager.rotate(6110, 0.1f, 0.0f, 0.0f);
                 this.transformFirstPersonItem(f, 0.0F);
-                itemRenderer.invokeDoBlockTransformations();
+                this.doBlockTransformations();
                 break;
         }
     }

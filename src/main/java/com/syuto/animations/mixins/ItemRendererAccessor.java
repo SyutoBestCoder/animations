@@ -13,6 +13,4 @@ public interface ItemRendererAccessor {
     @Accessor("prevEquippedProgress")
     float getPrevEquippedProgress();
 
-    @Invoker("doBlockTransformations")
-    void invokeDoBlockTransformations();
 }
