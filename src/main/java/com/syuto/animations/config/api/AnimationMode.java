@@ -5,7 +5,6 @@ public enum AnimationMode {
     SIGMA,
     VANILLA,
     PLAIN,
-    STAB,
     SPIN;
 
 

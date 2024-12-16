@@ -3,7 +3,6 @@ package com.syuto.animations.mixins;
 import com.syuto.animations.config.Config;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.util.MathHelper;
 import org.lwjgl.opengl.GL11;
@@ -43,7 +42,7 @@ public abstract class MixinItemRenderer {
 
             )
     )
-    public void render(float p_renderItemInFirstPerson_1_, CallbackInfo ci) {
+    public void render(float p_renderItemInFirstPerson_1_, CallbackInfo ci) { //@AwayXD plz use GL11 not GLStateManager thx xoxoxo
         ItemRendererAccessor itemRenderer = (ItemRendererAccessor) this;
         float equippedProgress = itemRenderer.getEquippedProgress();
         float prevEquippedProgress = itemRenderer.getPrevEquippedProgress();
@@ -79,14 +78,16 @@ public abstract class MixinItemRenderer {
                 this.transformFirstPersonItem(f, 0f);
                 this.spin = -(System.currentTimeMillis() / 2 % 360);
                 break;
-            case STAB:
-                GlStateManager.translate(0.6f, 0.3f, -0.6f + -spin * 0.7);
-                GlStateManager.rotate(6090, 0.0f, 0.0f, 0.1f);
-                GlStateManager.rotate(6085, 0.0f, 0.1f, 0.0f);
-                GlStateManager.rotate(6110, 0.1f, 0.0f, 0.0f);
-                this.transformFirstPersonItem(f, 0.0F);
+            /*case STAB: //broken @AwayXD
+                GL11.glTranslated(0.75, 0.45, 0.8);
+                this.transformFirstPersonItem(f / 1.5f, 0.0f);
+                GL11.glTranslated(0.6f, 0.3f, -0.6f + -sine * 0.7);
+                GL11.glRotated(6090, 0.0f, 0.0f, 0.1f);
+                GL11.glRotated(6085, 0.0f, 0.1f, 0.0f);
+                GL11.glRotated(6110, 0.1f, 0.0f, 0.0f);
+                this.transformFirstPersonItem(0.0F, 0.0f);
                 this.doBlockTransformations();
-                break;
+                break;*/
         }
     }
 

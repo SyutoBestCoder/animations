@@ -12,5 +12,4 @@ public interface ItemRendererAccessor {
 
     @Accessor("prevEquippedProgress")
     float getPrevEquippedProgress();
-
 }
