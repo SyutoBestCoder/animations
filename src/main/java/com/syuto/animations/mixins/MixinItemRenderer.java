@@ -78,16 +78,22 @@ public abstract class MixinItemRenderer {
                 this.transformFirstPersonItem(f, 0f);
                 this.spin = -(System.currentTimeMillis() / 2 % 360);
                 break;
-            /*case STAB: //broken @AwayXD
-                GL11.glTranslated(0.75, 0.45, 0.8);
-                this.transformFirstPersonItem(f / 1.5f, 0.0f);
-                GL11.glTranslated(0.6f, 0.3f, -0.6f + -sine * 0.7);
-                GL11.glRotated(6090, 0.0f, 0.0f, 0.1f);
-                GL11.glRotated(6085, 0.0f, 0.1f, 0.0f);
-                GL11.glRotated(6110, 0.1f, 0.0f, 0.0f);
-                this.transformFirstPersonItem(0.0F, 0.0f);
-                this.doBlockTransformations();
-                break;*/
+            case ETB: // >_< i stole these
+                GL11.glTranslated(0, -0.1, 0);
+                this.transformFirstPersonItem(f , 0.0F);
+                GL11.glTranslatef(0.1F, 0.4F, -0.1F);
+                GL11.glRotated(-sine * (float) 70 / 2f, -8f, -0f, 9f);
+                GL11.glRotated(-sine * (float) 70, 1.5f, -0.4f, -0f);
+                break;
+            case DORTWARE:
+                float sine2 = MathHelper.sin(MathHelper.sqrt_float(f1) * (float) Math.PI - 3);
+                this.transformFirstPersonItem(f , 0.0F);
+                GL11.glRotated(-sine * 10, 0.0f, 15.0f, 200.0f);
+                GL11.glRotated(-sine * 10f, 300.0f, sine / 2.0f, 1.0f);
+                GL11.glTranslated(3.4, 0.3, -0.4);
+                GL11.glTranslatef(-2.10f, -0.2f, 0.1f);
+                GL11.glRotated(sine2 * 13.0f, -10.0f, -1.4f, -10.0f);
+                break;
         }
     }
 

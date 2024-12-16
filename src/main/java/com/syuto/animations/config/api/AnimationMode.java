@@ -2,7 +2,9 @@ package com.syuto.animations.config.api;
 
 public enum AnimationMode {
     EXHIBITION,
+    ETB,
     SIGMA,
+    DORTWARE,
     VANILLA,
     PLAIN,
     SPIN;

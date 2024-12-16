@@ -26,4 +26,6 @@ public class ClientUtils {
     public static String replace(String text) {
         return text.replace("&", "§").replace("%and", "&");
     }
+
+
 }
