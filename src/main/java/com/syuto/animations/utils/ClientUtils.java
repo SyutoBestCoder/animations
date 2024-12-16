@@ -15,7 +15,7 @@ public class ClientUtils {
         if (!nullCheck()) {
             return;
         }
-        final String txt = replace("&7[&3Byte&7]&r " + message);
+        final String txt = replace("&7[&dA&7]&r " + message);
         mc.thePlayer.addChatMessage(new ChatComponentText(txt));
     }
 
