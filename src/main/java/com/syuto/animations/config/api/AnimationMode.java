@@ -7,7 +7,9 @@ public enum AnimationMode {
     DORTWARE,
     VANILLA,
     PLAIN,
-    SPIN;
+    SPIN,
+    AVATAR;
+
 
 
     public static AnimationMode fromJsonValue(String value) {

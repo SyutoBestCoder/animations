@@ -43,7 +43,7 @@ public abstract class MixinItemRenderer {
             )
     )
     public void render(float p_renderItemInFirstPerson_1_, CallbackInfo ci) { //@AwayXD plz use GL11 not GLStateManager thx xoxoxo
-        ItemRendererAccessor itemRenderer = (ItemRendererAccessor) this;
+        ItemRendererAccessor itemRenderer = (ItemRendererAccessor) this; //@SyutoBestCoder I gotchu mb
         float equippedProgress = itemRenderer.getEquippedProgress();
         float prevEquippedProgress = itemRenderer.getPrevEquippedProgress();
         float f = 1.0F - (prevEquippedProgress + (equippedProgress - prevEquippedProgress) * p_renderItemInFirstPerson_1_);
@@ -94,6 +94,19 @@ public abstract class MixinItemRenderer {
                 GL11.glTranslatef(-2.10f, -0.2f, 0.1f);
                 GL11.glRotated(sine2 * 13.0f, -10.0f, -1.4f, -10.0f);
                 break;
+            case AVATAR:
+                float swingProgress = abstractclientplayer.getSwingProgress(p_renderItemInFirstPerson_1_);
+                GL11.glTranslatef(0.56F, -0.52F, -0.71999997F);
+                GL11.glTranslatef(0.0F, 0, 0.0F);
+                GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
+                float red = MathHelper.sin(swingProgress * swingProgress * (float)Math.PI);
+                float blue = MathHelper.sin(MathHelper.sqrt_float(swingProgress) * (float)Math.PI);
+                GL11.glRotatef(red * -20.0F, 0.0F, 1.0F, 0.0F);
+                GL11.glRotatef(blue * -20.0F, 0.0F, 0.0F, 1.0F);
+                GL11.glRotatef(blue * -40.0F, 1.0F, 0.0F, 0.0F);
+                GL11.glScalef(0.4F, 0.4F, 0.4F);
+                break;
+
         }
     }
 
