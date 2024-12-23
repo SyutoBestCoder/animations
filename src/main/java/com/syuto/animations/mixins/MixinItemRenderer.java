@@ -106,7 +106,58 @@ public abstract class MixinItemRenderer {
                 GL11.glRotatef(blue * -40.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glScalef(0.4F, 0.4F, 0.4F);
                 break;
-
+            case SWONG:
+                this.transformFirstPersonItem(f / 2.0F, 0.0F);
+                GL11.glRotated(-sine * 40.0F / 2.0F, sine / 2.0F, -0.0F, 9.0F);
+                GL11.glRotated(-sine * 30.0F, 1.0F, sine / 2.0F, -0.0F);
+                break;
+            case SWANG:
+                this.transformFirstPersonItem(f / 2.0F, f1);
+                GL11.glRotated(sine * 30.0F / 2.0F, -sine, -0.0F, 9.0F);
+                GL11.glRotated(sine * 40.0F, 1.0F, -sine / 2.0F, -0.0F);
+                break;
+            case SWANK:
+                this.transformFirstPersonItem(f / 2.0F, f1);
+                GL11.glRotated(sine * 30.0F, -sine, -0.0F, 9.0F);
+                GL11.glRotated(sine * 40.0F, 1.0F, -sine, -0.0F);
+                break;
+            case STYLES:
+                this.transformFirstPersonItem(f, 0.0F);
+                GL11.glTranslatef(-0.05f, 0.2f, 0.0f);
+                GL11.glRotated(-sine * 70.0f / 2.0f, -8.0f, -0.0f, 9.0f);
+                GL11.glRotated(-sine * 70.0f, 1.0f, -0.4f, -0.0f);
+                break;
+          /* case STELLA: //swings wrong way
+                transformFirstPersonItem(-0.1f, f1);
+                GlStateManager.translate(-0.5F, 0.4F, -0.2F);
+                GlStateManager.rotate(30.0F, 0.0F, 1.0F, 0.0F);
+                GlStateManager.rotate(-70.0F, 1.0F, 0.0F, 0.0F);
+                GlStateManager.rotate(40.0F, 0.0F, 1.0F, 0.0F);
+                break;
+        */    case NUDGE:
+                GL11.glTranslated(-0.1D, 0.09D, 0.0D);
+                GL11.glRotated(0, -320, 320, 0);
+                this.transformFirstPersonItem(0, 1);
+                float var18 = MathHelper.sin(MathHelper.sqrt_float(f1) * 3f);
+                float var16 = MathHelper.sin(MathHelper.sqrt_float(f1) * 4.9415927f);
+                GL11.glRotated(-var18 * (float) 120 / 2.0f, -90, -var16, 10);
+                GL11.glRotated(-var18 * (float) 110, 15, var16, -0);
+                break;
+            case PUNCH:
+                this.transformFirstPersonItem(f, 0.0f);
+                GL11.glTranslatef(0.1f, 0.2f, 0.3f);
+                GL11.glRotated(-sine * 30.0f, -5.0f, 0.0f, 9.0f);
+                GL11.glRotated(-sine * 10.0f, 1.0f, -0.4f, -0.5f);
+                break;
+            case SLIDE:
+                GL11.glTranslated(-0.1D, 0.15D, 0.0D);
+                this.transformFirstPersonItem(0, 0);
+                float var11 = MathHelper.sin(MathHelper.sqrt_float(f1) * 2.9415927f);
+                float var12 = MathHelper.sin(MathHelper.sqrt_float(f1) * 2.9415927f);
+                GL11.glTranslatef(-0.05f, -0.0f, 0.35f);
+                GL11.glRotated(-var11 * (float) 60.0 / 2.0f, -15.0f, var12, 10);
+                GL11.glRotated(-var11 * (float) 70.0, 5.0f, -var12, -0);
+                break;
         }
     }
 

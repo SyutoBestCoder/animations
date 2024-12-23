@@ -8,7 +8,15 @@ public enum AnimationMode {
     VANILLA,
     PLAIN,
     SPIN,
-    AVATAR;
+    AVATAR,
+    SWONG,
+    SWANG,
+    SWANK,
+    STYLES,
+ //   STELLA,
+    NUDGE,
+    PUNCH,
+    SLIDE;
 
 
 

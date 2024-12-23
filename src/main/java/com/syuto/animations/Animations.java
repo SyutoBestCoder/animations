@@ -21,7 +21,7 @@ import java.io.IOException;
 @Mod(modid = Animations.MODID, version = Animations.VERSION)
 public class Animations {
     public static final String MODID = "animations";
-    public static final String VERSION = "1.3";
+    public static final String VERSION = "1.4";
 
 
     public static final Logger LOG = LogManager.getLogger("Byte");
