@@ -50,6 +50,7 @@ public class Animations {
             JsonObject jo = new JsonObject();
             jo.addProperty("mode", Config.mode.name());
             jo.addProperty("scale", Config.scale);
+            jo.addProperty("speed", Config.swingSpeed);
 
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String jsonData = gson.toJson(jo);
@@ -77,6 +78,7 @@ public class Animations {
             if (config.has("mode") && config.has("scale")) {
                 Config.mode = AnimationMode.fromJsonValue(config.get("mode").getAsString());
                 Config.scale = config.get("scale").getAsInt();
+                Config.swingSpeed = config.get("speed").getAsInt();
             }
 
             LOG.info("Configuration loaded successfully.");
