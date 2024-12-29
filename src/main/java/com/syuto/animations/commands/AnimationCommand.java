@@ -23,7 +23,7 @@ public class AnimationCommand extends CommandBase {
 
     @Override
     public String getCommandUsage(ICommandSender sender) {
-        return "/animation [help|modes|mode|scale] - Displays help or sets animation mode";
+        return "/animation [help|modes|mode|scale|speed] - Displays help or sets animation mode";
     }
 
     @Override
@@ -57,6 +57,23 @@ public class AnimationCommand extends CommandBase {
                     sendScale();
                 }
                 break;
+            case "speed":
+                if (args.length > 1) {
+                    try {
+                        int speed = Integer.parseInt(args[1]);
+                        if (speed < 1 || speed > 100) {
+                            ClientUtils.sendMessage("&cSpeed must be between 1 and 100.");
+                        } else {
+                            Animations.setAnimationSpeed(speed);
+                            ClientUtils.sendMessage("&aSpeed set to " + speed + "%");
+                        }
+                    } catch (NumberFormatException e) {
+                        ClientUtils.sendMessage("&cInvalid speed value. Please provide a number between 1 and 100.");
+                    }
+                } else {
+                    sendSpeed();
+                }
+                break;
             default:
                 setAnimationMode(args[0]);
                 break;
@@ -69,6 +86,7 @@ public class AnimationCommand extends CommandBase {
         ClientUtils.sendMessage("&7/animation <mode> - Sets the animation mode.");
         ClientUtils.sendMessage("&7/animation modes - Shows the animation modes.");
         ClientUtils.sendMessage("&7/animation scale <1-100> - Shows and sets the item scale.");
+        ClientUtils.sendMessage("&7/animation speed <1-100> - Shows and sets the swing speed.");
         ClientUtils.sendMessage("&7/animation help - Shows this help message.");
         ClientUtils.sendLine();
     }
@@ -89,6 +107,14 @@ public class AnimationCommand extends CommandBase {
         ClientUtils.sendMessage("&7Current scale set to " + Config.scale + "%.");
         ClientUtils.sendLine();
     }
+
+    private void sendSpeed() {
+        ClientUtils.sendLine();
+        ClientUtils.sendMessage("&eSwing Speed:");
+        ClientUtils.sendMessage("&7Current Speed set to " + Config.swingSpeed + "%.");
+        ClientUtils.sendLine();
+    }
+
 
     private void setAnimationMode(String modeName) {
         try {

@@ -95,4 +95,9 @@ public class Animations {
         Config.scale = scale;
         saveConfig();
     }
+
+    public static void setAnimationSpeed(int speed) {
+        Config.swingSpeed = speed;
+        saveConfig();
+    }
 }

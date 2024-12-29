@@ -6,7 +6,8 @@
   "compatibilityLevel": "JAVA_8",
   "client": [
     "ItemRendererAccessor",
-    "MixinItemRenderer"
+    "MixinItemRenderer",
+    "EntityLivingBaseMixin"
   ],
   "injectors": {
     "defaultRequire": 1
