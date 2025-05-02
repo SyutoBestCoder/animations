@@ -1,4 +1,4 @@
-# Syuto's animation mode
+# Syuto's animation mod
 
 
 commands are
