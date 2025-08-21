@@ -13,9 +13,6 @@ import java.util.stream.Stream;
 
 public class AnimationCommand extends CommandBase {
 
-    Minecraft mc = Minecraft.getMinecraft();
-
-
     @Override
     public String getCommandName() {
         return "animation";

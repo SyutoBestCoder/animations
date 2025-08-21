@@ -6,6 +6,7 @@ import com.syuto.animations.config.api.AnimationMode;
 import com.syuto.animations.config.Config;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.ClientCommandHandler;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -23,7 +24,6 @@ public class Animations {
     public static final String MODID = "animations";
     public static final String VERSION = "1.5";
 
-
     public static final Logger LOG = LogManager.getLogger("Byte");
     private static final File modDirectory = new File(Minecraft.getMinecraft().mcDataDir, "AnimationsMod");
     private static final File configFile = new File(modDirectory, "animations.json");
@@ -35,6 +35,7 @@ public class Animations {
             modDirectory.mkdir();
         }
 
+        MinecraftForge.EVENT_BUS.register(new AnimationCommand());
         ClientCommandHandler.instance.registerCommand(new AnimationCommand());
 
         loadConfig();
@@ -75,12 +76,11 @@ public class Animations {
         try (FileReader reader = new FileReader(configFile)) {
             JsonParser jsonParser = new JsonParser();
             config = jsonParser.parse(reader).getAsJsonObject();
-            if (config.has("mode") && config.has("scale")) {
+            if (config.has("mode") && config.has("scale") && config.has("speed")) {
                 Config.mode = AnimationMode.fromJsonValue(config.get("mode").getAsString());
                 Config.scale = config.get("scale").getAsInt();
                 Config.swingSpeed = config.get("speed").getAsInt();
             }
-
             LOG.info("Configuration loaded successfully.");
         } catch (JsonSyntaxException | IOException e) {
             LOG.error("Unable to load configuration: {}", e.getMessage());
