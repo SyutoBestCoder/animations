@@ -158,6 +158,19 @@ public abstract class MixinItemRenderer {
                 GL11.glRotated(-var11 * (float) 60.0 / 2.0f, -15.0f, var12, 10);
                 GL11.glRotated(-var11 * (float) 70.0, 5.0f, -var12, -0);
                 break;
+            case JIGSAW:
+                float swingProgress1 = abstractclientplayer.getSwingProgress(p_renderItemInFirstPerson_1_), var2 = 0;
+                float var3 = MathHelper.sin(swingProgress1 * swingProgress1 * (float) Math.PI);
+                float var4 = MathHelper.sin(MathHelper.sqrt_float(swingProgress1) * (float) Math.PI);
+                GL11.glTranslatef(0.56F, -0.42F, -0.71999997F);
+                GL11.glTranslatef(0.1F * var4, -0F, -0.21999997F * var4);
+                GL11.glTranslatef(0.0F, var2 * -0.15F, 0.0F);
+                GL11.glRotated(var3 * 45.0F, 0.0F, 1.0F, 0.0F);
+                GL11.glRotated(var3 * -20.0F, 0.0F, 1.0F, 0.0F);
+                GL11.glRotated(var4 * -20.0F, 0.0F, 0.0F, 1.0F);
+                GL11.glRotated(var4 * -80.0F, 1.0F, 0.0F, 0.0F);
+                GL11.glScalef(0.4F, 0.4F, 0.4F);
+                break;
         }
     }
 

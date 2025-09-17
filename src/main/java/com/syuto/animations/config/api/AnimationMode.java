@@ -16,6 +16,7 @@ public enum AnimationMode {
  //   STELLA,
     NUDGE,
     PUNCH,
+    JIGSAW,
     SLIDE;
 
 
