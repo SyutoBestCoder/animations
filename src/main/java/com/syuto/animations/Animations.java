@@ -2,8 +2,10 @@ package com.syuto.animations;
 
 import com.google.gson.*;
 import com.syuto.animations.commands.AnimationCommand;
+import com.syuto.animations.commands.AnimationGuiCommand;
 import com.syuto.animations.config.api.AnimationMode;
 import com.syuto.animations.config.Config;
+import com.syuto.animations.gui.AnimationGuiScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
@@ -37,6 +39,7 @@ public class Animations {
 
         MinecraftForge.EVENT_BUS.register(new AnimationCommand());
         ClientCommandHandler.instance.registerCommand(new AnimationCommand());
+        ClientCommandHandler.instance.registerCommand(new AnimationGuiCommand());
 
         loadConfig();
         LOG.info("Animations mod initialized.");

@@ -1,11 +1,11 @@
 package com.syuto.animations.config.api;
 
 public enum AnimationMode {
+    VANILLA,  // keep this first thx - awau
     EXHIBITION,
     ETB,
     SIGMA,
     DORTWARE,
-    VANILLA,
     PLAIN,
     SPIN,
     AVATAR,
