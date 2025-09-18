@@ -1,4 +1,4 @@
-package com.syuto.animations.gui;
+package com.syuto.animations.screens;
 
 import com.syuto.animations.Animations;
 import com.syuto.animations.config.Config;
@@ -9,12 +9,11 @@ import net.minecraftforge.fml.client.config.GuiSlider;
 
 import java.io.IOException;
 
-public class AnimationGuiScreen extends GuiScreen {
+public class AnimationsGui extends GuiScreen {
 
     private GuiButton modeButton;
     private GuiSlider scaleSlider;
     private GuiSlider speedSlider;
-    private GuiButton resetButton;
 
     private int modeIndex = 0;
 
@@ -46,7 +45,7 @@ public class AnimationGuiScreen extends GuiScreen {
                 "Speed: ", "%", 1, 100, Config.swingSpeed, false, true);
         buttonList.add(speedSlider);
 
-        resetButton = new GuiButton(3, centerX - 100, centerY + 20, 95, 20, "Reset Defaults");
+        GuiButton resetButton = new GuiButton(3, centerX - 100, centerY + 20, 95, 20, "Reset Defaults");
         buttonList.add(resetButton);
 
         buttonList.add(new GuiButton(4, centerX + 5, centerY + 20, 95, 20, "Done"));
@@ -57,16 +56,24 @@ public class AnimationGuiScreen extends GuiScreen {
         if (button.id == 0) {
             modeIndex = (modeIndex + 1) % AnimationMode.values().length;
             AnimationMode newMode = AnimationMode.values()[modeIndex];
-            Animations.setAnimationMode(newMode);
+
+            Animations.updateConfig(
+                    newMode,
+                    Config.scale,
+                    Config.swingSpeed
+            );
+
             button.displayString = "Mode: " + newMode.name().toLowerCase();
         } else if (button.id == 3) {
             Config.scale = 100;
             Config.swingSpeed = 1;
             modeIndex = 0;
 
-            Animations.setAnimationScale(Config.scale);
-            Animations.setAnimationSpeed(Config.swingSpeed);
-            Animations.setAnimationMode(AnimationMode.values()[modeIndex]);
+            Animations.updateConfig(
+                    AnimationMode.values()[modeIndex],
+                    Config.scale,
+                    Config.swingSpeed
+            );
 
             scaleSlider.setValue(Config.scale);
             speedSlider.setValue(Config.swingSpeed);
@@ -81,17 +88,20 @@ public class AnimationGuiScreen extends GuiScreen {
         super.updateScreen();
 
         int newScale = scaleSlider.getValueInt();
-        if (newScale != Config.scale) {
-            Config.scale = newScale;
-            Animations.setAnimationScale(newScale);
-        }
-
         int newSpeed = speedSlider.getValueInt();
-        if (newSpeed != Config.swingSpeed) {
+
+        if (newScale != Config.scale || newSpeed != Config.swingSpeed) {
+            Config.scale = newScale;
             Config.swingSpeed = newSpeed;
-            Animations.setAnimationSpeed(newSpeed);
+
+            Animations.updateConfig(
+                    Config.mode,
+                    Config.scale,
+                    Config.swingSpeed
+            );
         }
     }
+
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {

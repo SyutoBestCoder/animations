@@ -1,30 +1,29 @@
 package com.syuto.animations.commands;
 
-import com.syuto.animations.gui.AnimationGuiScreen;
+import com.mojang.realmsclient.gui.ChatFormatting;
+import com.syuto.animations.screens.AnimationsGui;
+import com.syuto.animations.utils.ClientUtils;
 import com.syuto.animations.utils.DelayedTask;
 import net.minecraft.client.Minecraft;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
-import net.minecraftforge.common.MinecraftForge;
 
-public class AnimationGuiCommand extends CommandBase {
+public class AnimationsCommand extends CommandBase {
     private static final Minecraft mc = Minecraft.getMinecraft();
-
-
 
     @Override
     public String getCommandName() {
-        return "animationgui";
+        return "animations";
     }
 
     @Override
     public String getCommandUsage(ICommandSender sender) {
-        return "/animationgui - Opens the Animation Settings GUI";
+        return "/animations - Opens the Animations Settings GUI";
     }
 
     @Override
     public void processCommand(ICommandSender sender, String[] args) {
-        new DelayedTask(() -> mc.displayGuiScreen(new AnimationGuiScreen()));
+        new DelayedTask(() -> mc.displayGuiScreen(new AnimationsGui()));
     }
 
 

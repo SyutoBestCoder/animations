@@ -13,7 +13,6 @@ public enum AnimationMode {
     SWANG,
     SWANK,
     STYLES,
- //   STELLA,
     NUDGE,
     PUNCH,
     JIGSAW,

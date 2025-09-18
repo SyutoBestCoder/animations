@@ -17,7 +17,7 @@ plugins {
 apply plugin: "net.minecraftforge.gradle.forge"
 apply plugin: 'org.spongepowered.mixin'
 
-version = "1.5"
+version = "1.6"
 group = "com.syuto.animations"
 archivesBaseName = "animations"
 
@@ -102,7 +102,7 @@ sourceSets {
 
 task buildAndCopyToMods(type: Copy, dependsOn: 'build') {
     from "build/libs"
-    into "<yourRealInstance>/.minecraft/mods"
+    into "C:\\Users\\malwarekat\\AppData\\Roaming\\.minecraft\\mods"
     include "*.jar"
 }
 

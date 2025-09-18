@@ -18,12 +18,6 @@ public class DelayedTask {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    public DelayedTask(Runnable task, int ticks) {
-        this.counter = ticks;
-        this.runnable = task;
-        MinecraftForge.EVENT_BUS.register(this);
-    }
-
     @SubscribeEvent
     public void onTick(TickEvent.ClientTickEvent event) {
         if (event.phase == Phase.START) {
