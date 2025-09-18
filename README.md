@@ -1,12 +1,11 @@
 # Syuto's custom animation mod
 
 File hashes:
-MD5: `3d3681411771d1704d88ee402f348279`
-SHA-1 `930ddee241bc98351ac76bf1f865157e36a21032`
-SHA-256 `eb73169d50d0d865b64aa33e6c78c061a0c56d17e241914734c29b18d5ac7dd9`
+MD5: `0a9f62daeb9ede679f744c602e16317a`
+SHA-1: `dab7f5c64e9461a012e68ab944da7d9fba605b0d`
+SHA-256: `e78e085242dfff5e6a95a7a72fdc13e036b3b820ac455b5efcad19cb51624716`
 
 <img src="resources/gui.png" alt="Gui screenshot"/>
-
 
 if you want any more animations added feel free to make a pull request and if you have any questions add me on discord `java.swing`
 

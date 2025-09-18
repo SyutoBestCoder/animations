@@ -169,12 +169,12 @@ public abstract class MixinItemRenderer {
 
             case JIGSAW:
                 GL11.glTranslatef(0.56F, -0.42F, -0.71999997F);
-                GL11.glTranslatef(0.1F * sine, 0F, -0.21999997F * sine);
+                GL11.glTranslatef(0.1F * sine, -0F, -0.21999997F * sine);
+                GL11.glTranslatef(0.0F, sine1 * -0.15F, 0.0F);
                 GL11.glRotated(sine1 * 45.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotated(sine1 * -20.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotated(sine * -20.0F, 0.0F, 0.0F, 1.0F);
                 GL11.glRotated(sine* -80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScalef(0.4F, 0.4F, 0.4F);
                 break;
         }
     }
