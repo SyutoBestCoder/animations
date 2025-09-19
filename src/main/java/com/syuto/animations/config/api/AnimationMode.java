@@ -1,7 +1,7 @@
 package com.syuto.animations.config.api;
 
 public enum AnimationMode {
-    VANILLA,  // keep this first thx - awau
+    VANILLA,  // keep this first thx - away
     EXHIBITION,
     ETB,
     SIGMA,
