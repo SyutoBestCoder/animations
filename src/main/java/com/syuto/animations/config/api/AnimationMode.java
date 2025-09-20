@@ -16,6 +16,10 @@ public enum AnimationMode {
     NUDGE,
     PUNCH,
     JIGSAW,
+    ROTATE,
+    LUCKY,
+    WIZZARD,
+    LENNOX,
     SLIDE;
 
 
