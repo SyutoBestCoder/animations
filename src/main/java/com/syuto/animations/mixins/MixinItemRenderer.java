@@ -184,6 +184,7 @@ public abstract class MixinItemRenderer {
                 GL11.glRotated(wizSine * 10.0F, -wizSine / -1.0F, 1.0F, 0.0F);
                 GL11.glTranslated(0.0D, 0.4D, 0.0D);
                 break;
+
             case LENNOX:
                 float lennoxSine = MathHelper.sin(MathHelper.sqrt_float(swingProgress) * 3.1f);
                 GL11.glTranslated(0.0D, 0.125D, -0.1D);
@@ -192,6 +193,7 @@ public abstract class MixinItemRenderer {
                 GL11.glRotated(-lennoxSine * 75.0F, 1.5F, lennoxSine / 3.0F, 0.0F);
                 GL11.glRotated(lennoxSine * (72.5F / 2.25F), lennoxSine / 3.0F, -2.7F, 5.0F);
                 break;
+
             case LUCKY:
                 this.transformFirstPersonItem(0.0f, 0.0f);
                 float luckySine = MathHelper.sin(MathHelper.sqrt_float(swingProgress) * 0.3215927f);
