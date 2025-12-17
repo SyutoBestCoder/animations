@@ -5,7 +5,7 @@
 
 <img src="resources/gui.png" alt="Gui screenshot"/>
 
-if you want any more animations added feel free to make a pull request and if you have any questions add me on discord `java.swing`
+if you want any more animations added feel free to make a pull request and if you have any questions add me on discord `syuto.java`
 
 
 ### -made by syuto & away
